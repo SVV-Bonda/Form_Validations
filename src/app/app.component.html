@@ -4,39 +4,90 @@
     <input type="text" formControlName="name" />
   </div>
   <div style="color:red">
-    Name is required
+    <div
+      *ngIf="
+        testForm.controls['name']?.errors?.['required'] &&
+        testForm.controls['name']?.invalid &&
+        formsubmit
+      "
+    >
+      Name is required
+    </div>
+    <div *ngIf="testForm.controls['name']?.errors?.['pattern']">
+      Enter Only Characters
+    </div>
   </div>
+
   <div>
     <label>Phone No : </label>
-    <input type="text" formControlName="phone" />
+    <input type="tel" formControlName="phone" maxlength="10" />
   </div>
   <div style="color:red">
-    Phone is required
+    <div
+      *ngIf="
+      testForm.controls['phone']?.errors?.['required'] &&
+      testForm.controls['phone']?.invalid &&
+        formsubmit
+      "
+    >
+      Phone is required
+    </div>
+    <div *ngIf="testForm.get('phone')?.errors?.maxlength">
+      Phone should be 10 digit
+    </div>
   </div>
   <div>
     <label>Email : </label>
     <input type="text" formControlName="email" />
   </div>
   <div style="color:red">
-    Email is required
+    <div
+      *ngIf="testForm.controls['email']?.errors?.['required'] &&
+    testForm.controls['email']?.invalid && formsubmit"
+    >
+      Email is required
+    </div>
+  </div>
+  <div>
+    <label>Group : </label>
+    <select formControlName="group">
+      <option value="select group" selected>select group</option>
+      <option value="1">IT</option>
+      <option value="2">NoNIT</option>
+    </select>
+  </div>
+  <div style="color:red">
+    <div
+      *ngIf="testForm.controls['group']?.errors?.['required'] &&
+    testForm.controls['group']?.invalid && formsubmit"
+    >
+      Grop is required
+    </div>
   </div>
   <div>
     <label>City : </label>
-    <input type="radio" formControlName="city" value="rjy"/>Rjy 
-    <input type="radio" formControlName="city" value="vzg"/>Vizag
-    <input type="radio" formControlName="city" value="hyd"/>Hyd
+    <input type="radio" formControlName="city" value="rjy" />Rjy
+    <input type="radio" formControlName="city" value="vzg" />Vizag
+    <input type="radio" formControlName="city" value="hyd" />Hyd
   </div>
   <div style="color:red">
-    Select City
+    <div
+      *ngIf="testForm.controls['city']?.errors?.['required'] &&
+    testForm.controls['city']?.invalid && formsubmit"
+    >
+      City is required
+    </div>
   </div>
-  <div>
-    <label></label>
-    <input type="checkbox" formControlName="active" value="y"/>Active
-  </div>
+  <div><input type="checkbox" formControlName="check" value="y" />Active</div>
   <div style="color:red">
-    Click Checkbox
+    <div
+      *ngIf="testForm.controls['check']?.errors?.['required'] &&
+    testForm.controls['check']?.invalid && formsubmit"
+    >
+      Accept Terms&Conditions
+    </div>
   </div>
   <div>
-    <button type="submit">Save</button>
+    <button type="submit" style="background-color:green;color:white">Save</button>
   </div>
 </form>
