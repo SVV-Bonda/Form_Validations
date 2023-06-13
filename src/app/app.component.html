@@ -20,7 +20,7 @@
 
   <div style="margin-top:1rem">
     <label>Phone No : </label>
-    <input type="tel" formControlName="phone" maxlength="10" />
+    <input type="tel" formControlName="phone" maxlength="12" (ngModelChange)="formatPhone($event)"/>
   </div>
   <div style="color:red">
     <div
@@ -31,9 +31,6 @@
       "
     >
       Phone is required
-    </div>
-    <div *ngIf="testForm.controls['phone']?.errors?.['maxlength']">
-      Phone should be 10 digit
     </div>
     <div *ngIf="testForm.controls['phone']?.errors?.['pattern']">
       Enter numbers only

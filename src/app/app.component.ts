@@ -18,8 +18,7 @@ export class AppComponent {
       '',
       [
         Validators.required,
-        Validators.pattern('^[0-9]*$'),
-        Validators.maxLength(10),
+        Validators.pattern('^[0-9]*$')
       ],
     ],
     email: [
@@ -37,5 +36,21 @@ export class AppComponent {
   SaveFun() {
     console.log(this.testForm.value);
     this.formsubmit = !this.formsubmit;
+  }
+
+  formatPhone(value: string) {
+    let formattedValue = '';
+    value = value.replace(/[^\d]/g, ''); // remove non-numeric characters
+    if (value.length > 0) {
+      formattedValue = value.substring(0, 3);
+    }
+    if (value.length > 3) {
+      formattedValue += '-' + value.substring(3, 6);
+    }
+    if (value.length > 6) {
+      formattedValue += '-' + value.substring(6, 10);
+    }
+    this.testForm.value.phone = formattedValue;
+    this.testForm.patchValue({ phone: formattedValue }, { emitEvent: false });
   }
 }
