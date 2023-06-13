@@ -1,0 +1,42 @@
+<form [formGroup]="testForm" (ngSubmit)="SaveFun()">
+  <div>
+    <label>Name : </label>
+    <input type="text" formControlName="name" />
+  </div>
+  <div style="color:red">
+    Name is required
+  </div>
+  <div>
+    <label>Phone No : </label>
+    <input type="text" formControlName="phone" />
+  </div>
+  <div style="color:red">
+    Phone is required
+  </div>
+  <div>
+    <label>Email : </label>
+    <input type="text" formControlName="email" />
+  </div>
+  <div style="color:red">
+    Email is required
+  </div>
+  <div>
+    <label>City : </label>
+    <input type="radio" formControlName="city" value="rjy"/>Rjy 
+    <input type="radio" formControlName="city" value="vzg"/>Vizag
+    <input type="radio" formControlName="city" value="hyd"/>Hyd
+  </div>
+  <div style="color:red">
+    Select City
+  </div>
+  <div>
+    <label></label>
+    <input type="checkbox" formControlName="active" value="y"/>Active
+  </div>
+  <div style="color:red">
+    Click Checkbox
+  </div>
+  <div>
+    <button type="submit">Save</button>
+  </div>
+</form>
