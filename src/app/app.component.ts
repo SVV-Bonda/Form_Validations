@@ -13,14 +13,22 @@ export class AppComponent {
   constructor(private fb: FormBuilder) {}
 
   testForm = this.fb.group({
-    name: ['', Validators.required, Validators.pattern("^[a-zA-Z -']+")],
+    name: ['', [Validators.required, Validators.pattern("^[a-zA-Z -']+")]],
     phone: [
       '',
-      Validators.required,
-      Validators.pattern(/^\d{3}-\d{3}-\d{4}$/),
-      Validators.maxLength(10),
+      [
+        Validators.required,
+        Validators.pattern('^[0-9]*$'),
+        Validators.maxLength(10),
+      ],
     ],
-    email: ['', Validators.required, Validators.email],
+    email: [
+      '',
+      [
+        Validators.required,
+        Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$'),
+      ],
+    ],
     group: ['', Validators.required],
     city: ['', Validators.required],
     check: ['', Validators.required],
@@ -28,6 +36,6 @@ export class AppComponent {
 
   SaveFun() {
     console.log(this.testForm.value);
-    this.formsubmit = true;
+    this.formsubmit = !this.formsubmit;
   }
 }

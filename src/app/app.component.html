@@ -13,12 +13,12 @@
     >
       Name is required
     </div>
-    <div *ngIf="testForm.controls['name']?.errors?.['pattern']">
-      Enter Only Characters
+    <div *ngIf="testForm.controls['name'].errors?.['pattern']">
+      Enter characters only
     </div>
   </div>
 
-  <div>
+  <div style="margin-top:1rem">
     <label>Phone No : </label>
     <input type="tel" formControlName="phone" maxlength="10" />
   </div>
@@ -32,13 +32,17 @@
     >
       Phone is required
     </div>
-    <div *ngIf="testForm.get('phone')?.errors?.maxlength">
+    <div *ngIf="testForm.controls['phone']?.errors?.['maxlength']">
       Phone should be 10 digit
     </div>
+    <div *ngIf="testForm.controls['phone']?.errors?.['pattern']">
+      Enter numbers only
+    </div>
   </div>
-  <div>
+
+  <div style="margin-top:1rem">
     <label>Email : </label>
-    <input type="text" formControlName="email" />
+    <input type="email" formControlName="email" />
   </div>
   <div style="color:red">
     <div
@@ -47,11 +51,15 @@
     >
       Email is required
     </div>
+    <div *ngIf="testForm.controls['email']?.errors?.['pattern']">
+      Invalid email
+    </div>
   </div>
-  <div>
+
+  <div style="margin-top:1rem">
     <label>Group : </label>
     <select formControlName="group">
-      <option value="select group" selected>select group</option>
+      <option value="" disabled>select group</option>
       <option value="1">IT</option>
       <option value="2">NoNIT</option>
     </select>
@@ -64,7 +72,8 @@
       Grop is required
     </div>
   </div>
-  <div>
+
+  <div style="margin-top:1rem">
     <label>City : </label>
     <input type="radio" formControlName="city" value="rjy" />Rjy
     <input type="radio" formControlName="city" value="vzg" />Vizag
@@ -78,7 +87,10 @@
       City is required
     </div>
   </div>
-  <div><input type="checkbox" formControlName="check" value="y" />Active</div>
+
+  <div style="margin-top:1rem">
+    <input type="checkbox" formControlName="check" value="y" />Active
+  </div>
   <div style="color:red">
     <div
       *ngIf="testForm.controls['check']?.errors?.['required'] &&
@@ -87,7 +99,10 @@
       Accept Terms&Conditions
     </div>
   </div>
-  <div>
-    <button type="submit" style="background-color:green;color:white">Save</button>
+
+  <div style="margin-top:1rem">
+    <button type="submit" style="background-color:green;color:white">
+      Save
+    </button>
   </div>
 </form>
