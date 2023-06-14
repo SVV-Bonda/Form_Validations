@@ -75,6 +75,9 @@
     >
       Confirm Password is required
     </div>
+    <div *ngIf="testForm.controls['cpassword']?.hasError('ConfirmedValidator')">
+      password and confirm password should match
+    </div>
   </div>
 
   <div style="margin-top:1rem">

@@ -12,27 +12,27 @@ export class AppComponent {
 
   constructor(private fb: FormBuilder) {}
 
-  testForm = this.fb.group({
-    name: ['', [Validators.required, Validators.pattern("^[a-zA-Z -']+")]],
-    phone: [
-      '',
-      [
-        Validators.required,
-        Validators.pattern('^[0-9]*$')
+  testForm = this.fb.group(
+    {
+      name: ['', [Validators.required, Validators.pattern("^[a-zA-Z -']+")]],
+      phone: ['', [Validators.required, Validators.pattern('^[0-9]*$')]],
+      email: [
+        '',
+        [
+          Validators.required,
+          Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$'),
+        ],
       ],
-    ],
-    email: ['',
-      [
-        Validators.required,
-        Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$'),
-      ],
-    ],
-    password: ['', [Validators.required]],
-    cpassword: ['', [Validators.required]],
-    group: ['', Validators.required],
-    city: ['', Validators.required],
-    check: ['', Validators.required],
-  });
+      password: ['', [Validators.required]],
+      cpassword: ['', [Validators.required]],
+      group: ['', Validators.required],
+      city: ['', Validators.required],
+      check: ['', Validators.required],
+    },
+    {
+      validator: this.ConfirmedValidator('password', 'cpassword'),
+    }
+  );
 
   SaveFun() {
     console.log(this.testForm.value);
@@ -53,5 +53,23 @@ export class AppComponent {
     }
     this.testForm.value.phone = formattedValue;
     this.testForm.patchValue({ phone: formattedValue }, { emitEvent: false });
+  }
+
+  ConfirmedValidator(controlName: any, matchingControlName: any) {
+    return (formGroup: FormGroup) => {
+      const control = formGroup.controls[controlName];
+      const matchingControl = formGroup.controls[matchingControlName];
+      if (
+        matchingControl.errors &&
+        !matchingControl.errors.confirmedValidator
+      ) {
+        return;
+      }
+      if (control.value !== matchingControl.value) {
+        matchingControl.setErrors({ ConfirmedValidator: true });
+      } else {
+        matchingControl.setErrors(null);
+      }
+    };
   }
 }
