@@ -61,7 +61,7 @@ export class AppComponent {
       const matchingControl = formGroup.controls[matchingControlName];
       if (
         matchingControl.errors &&
-        !matchingControl.errors.confirmedValidator
+        !matchingControl.errors.ConfirmedValidator
       ) {
         return;
       }
