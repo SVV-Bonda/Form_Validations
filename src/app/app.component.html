@@ -54,6 +54,30 @@
   </div>
 
   <div style="margin-top:1rem">
+    <label>Password : </label>
+    <input type="password" formControlName="password" />
+  </div>
+  <div style="color:red">
+    <div
+      *ngIf="testForm.controls['password']?.errors?.['required'] && formsubmit"
+    >
+      Password is required
+    </div>
+  </div>
+
+  <div style="margin-top:1rem">
+    <label>Confirm Password : </label>
+    <input type="password" formControlName="cpassword" />
+  </div>
+  <div style="color:red">
+    <div
+      *ngIf="testForm.controls['cpassword']?.errors?.['required'] && formsubmit"
+    >
+      Confirm Password is required
+    </div>
+  </div>
+
+  <div style="margin-top:1rem">
     <label>Group : </label>
     <select formControlName="group">
       <option value="" disabled>select group</option>
